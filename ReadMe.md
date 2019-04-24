@@ -29,7 +29,7 @@ import {oneOf} from 'vue-properties';
 export default {
     props: {
         size: {
-            type: String, 
+            type: String,
             validator: oneOf('large', 'medium', 'small')
         }
     }
@@ -43,7 +43,7 @@ import {regex} from 'vue-properties';
 export default {
     props: {
         field: {
-            type: String, 
+            type: String,
             validator: regex(/[A-Z][a-z]+/)
         }
     }
@@ -58,7 +58,7 @@ import {range, between} from 'vue-properties';
 export default {
     props: {
         percentage: {
-            type: Integer, 
+            type: Integer,
             validator: range(0, 100)
         },
         teen: {
@@ -78,7 +78,7 @@ import {smallerThan, biggerThan} from 'vue-properties';
 export default {
     props: {
         canDrink: {
-            type: Integer, 
+            type: Integer,
             validator: biggerThan(18)
         },
         negative: {
@@ -100,7 +100,7 @@ import {structure} from 'vue-properties';
 export default {
     props: {
         options: {
-            type: Object, 
+            type: Object,
             validator: structure({
                 color: String,
                 amount: Integer
@@ -118,7 +118,7 @@ import {structure} from 'vue-properties';
 export default {
     props: {
         users: {
-            type: Object, 
+            type: Array,
             validator: structure([
                 {
                     id: Integer,
