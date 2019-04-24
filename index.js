@@ -1,3 +1,3 @@
-import {oneOf, regex, range, between, smallerThan, biggerThan} from './src/validators';
+import {oneOf, regex, range, between, smallerThan, biggerThan, typeOf} from './src/validators';
 
-export {oneOf, regex, range, between, smallerThan, biggerThan};
+export {oneOf, regex, range, between, smallerThan, biggerThan, typeOf};
