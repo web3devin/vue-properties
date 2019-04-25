@@ -41,11 +41,8 @@ function validate(object, schema, options, errors) {
 }
 
 function validateProperty(object, value, property, schema, options, errors) {
-    // @TODO
     if (typeof value === 'undefined') {
-        if (schema === 'undefined' || (isArray(schema) && schema.indexOf('undefined') !== -1)) {
-            return
-        } else {
+        if (schema.required && schema.type !== 'any') {
             errors.push({
                 attribute: 'required',
                 property: property,
@@ -53,10 +50,12 @@ function validateProperty(object, value, property, schema, options, errors) {
                 actual: undefined
             })
             return
+        } else {
+            return
         }
     }
 
-    if (checkType(value, schema)) {
+    if (checkType(value, schema.type)) {
         return
     } else {
         errors.push({
@@ -99,8 +98,8 @@ function checkType(value, type) {
             case 'date':
                 if (isDate(value)) return true
                 break
-            case 'undefined':
-                if (typeof value === 'undefined') return true
+            case 'any':
+                if (typeof value !== 'undefined') return true
                 break
         }
     }

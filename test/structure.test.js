@@ -1,8 +1,8 @@
 import {structure} from './../src/structure.js';
 
 const schema = {
-    name: 'string',
-    age: ['integer', 'undefined']
+    name: { type: 'string', required: true },
+    age: { type: 'integer' }
 }
 
 describe('Structure Test', function () {
