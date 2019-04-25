@@ -2,12 +2,12 @@ import {structure} from './../src/structure.js';
 
 const schema = {
     name: 'string',
-    age: 'integer'
+    age: ['integer', 'undefined']
 }
 
 describe('Structure Test', function () {
 
-    it('Basic Strcture', function () {
+    it('Basic Structure', function () {
         // given
         const validator = structure(schema);
 
@@ -45,12 +45,7 @@ describe('Structure Test', function () {
         const validator = structure(schema);
 
         // when
-        let valid = false
-        try {
-            valid = validator({ name: 'Phil', age: 'old' });
-        } catch (e) {
-            expect(e).toBe('The age property must be of integer type');
-        }
+        const valid = validator({ name: 'Phil', age: 'old' });
 
         // then
         expect(valid).toBe(false);
@@ -61,12 +56,7 @@ describe('Structure Test', function () {
         const validator = structure(schema);
 
         // when
-        let valid = false
-        try {
-            valid = validator({});
-        } catch (e) {
-            expect(e).toBe('The name property is required');
-        }
+        const valid = validator({});
 
         // then
         expect(valid).toBe(false);
@@ -77,12 +67,7 @@ describe('Structure Test', function () {
         const validator = structure(schema, {additionalProperties: false});
 
         // when
-        let valid = false
-        try {
-            valid = validator({ name: 'Phil', age: 24, occupation: 'Salaryman' });
-        } catch (e) {
-            expect(e).toBe('The occupation property must not exist');
-        }
+        const valid = validator({ name: 'Phil', age: 24, occupation: 'Salaryman' });
 
         // then
         expect(valid).toBe(true);

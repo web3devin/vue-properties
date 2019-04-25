@@ -4,11 +4,11 @@ function structure(schema, options) {
     options = rollup(validation.defaults, options)
     return function(object) {
         let errors = []
-        validate(value, schema, options, errors)
+        validate(object, schema, options, errors)
         return !(errors.length)
     }
 }
-
+const validation = {}
 validation.defaults = {}
 validation.messages = {}
 
@@ -54,6 +54,18 @@ function validateProperty(object, value, property, schema, options, errors) {
             })
             return
         }
+    }
+
+    if (checkType(value, schema)) {
+        return
+    } else {
+        errors.push({
+                attribute: 'type',
+                property: property,
+                expected: schema.toString(),
+                actual: typeof value
+        })
+        return
     }
 }
 
