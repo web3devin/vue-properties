@@ -55,15 +55,6 @@ function typeOf() {
     }
 }
 
-function structure(map) {
-    if (typeof map !== 'object') throw "Invalid argument"
-    return function(value) {
-        // @TODO: will need to implement some validator for this
-        // Currently looking at: https://github.com/flatiron/revalidator
-        // Or: https://github.com/tdegrunt/jsonschema
-    }
-}
-
 export {
     inEnum, regex, range, between, smallerThan, biggerThan, typeOf
 }
