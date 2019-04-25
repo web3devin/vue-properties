@@ -33,14 +33,14 @@ function rollup() {
 }
 
 function validate(object, schema, options, errors) {
-    for (prop in schema) {
+    for (const prop in schema) {
         if (schema.hasOwnProperty(prop)) {
             validateProperty(object, object[prop], prop, schema[prop], options, errors)
         }
     }
 }
 
-function validateProperty(object value, property, schema, options, errors) {
+function validateProperty(object, value, property, schema, options, errors) {
     // @TODO
     if (typeof value === 'undefined') {
         if (schema === 'undefined' || (isArray(schema) && schema.indexOf('undefined') !== -1)) {
@@ -60,7 +60,7 @@ function validateProperty(object value, property, schema, options, errors) {
 function checkType(value, type) {
     if (typeof type === 'undefined') return true
     const types = isArray(type) ? type : [type]
-    for (const i = 0; i < types.length; i++) {
+    for (let i = 0; i < types.length; i++) {
         type = types[i].toLowerCase().trim()
         switch (type) {
             case 'string':
@@ -88,7 +88,7 @@ function checkType(value, type) {
                 if (isDate(value)) return true
                 break
             case 'undefined':
-                if (typeof value === 'unedfined') return true
+                if (typeof value === 'undefined') return true
                 break
         }
     }
