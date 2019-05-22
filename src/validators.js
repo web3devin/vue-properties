@@ -1,3 +1,4 @@
+/* eslint-disable */
 function inEnum() {
     const values = Array.prototype.slice.apply(arguments)
     return function (value) {
